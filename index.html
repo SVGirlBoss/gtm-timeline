@@ -40,6 +40,7 @@
     </script>
     
     <style>
+        /* Custom stem connector positioning */
         @media (min-width: 768px) {
             .timeline-node-left::after {
                 content: '';
@@ -75,6 +76,7 @@
             box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.12);
         }
         
+        /* Owner Badge Interactive Pulse & Hover */
         .owner-badge-interactive {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -188,12 +190,12 @@
         </div>
     </main>
 
-    <!-- ENHANCED OWNER DETAIL POPOUT BUBBLE / MODAL -->
-    <div id="ownerModalOverlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="closeOwnerModal(event)">
+    <!-- OWNER DETAIL POPOUT BUBBLE / MODAL -->
+    <div id="ownerModalOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="closeOwnerModal(event)">
         <div id="ownerModalBubble" class="bg-white border border-slate-200 rounded-3xl shadow-2xl max-w-lg w-full p-6 transform scale-95 transition-all duration-200 relative overflow-hidden" onclick="event.stopPropagation()">
             
             <!-- Close Button -->
-            <button onclick="closeOwnerModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition-colors z-10">
+            <button onclick="closeOwnerModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition-colors">
                 <i data-lucide="x" class="w-4 h-4"></i>
             </button>
 
@@ -202,7 +204,7 @@
                 <div id="modalAvatar" class="w-14 h-14 rounded-2xl flex items-center justify-center font-extrabold text-xl shadow-md flex-shrink-0">
                     <!-- Dynamic Initials -->
                 </div>
-                <div class="pr-6">
+                <div>
                     <div class="flex items-center gap-2 mb-1">
                         <h3 id="modalOwnerName" class="text-xl font-extrabold text-slate-900 tracking-tight">Owner Name</h3>
                         <span id="modalOwnerTag" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border">
@@ -222,11 +224,11 @@
                 <p id="modalOwnerBio" class="leading-relaxed">Bio summary details...</p>
             </div>
 
-            <!-- Key Deliverables & Action Items -->
+            <!-- Deliverables Count & Assigned Actions List -->
             <div>
                 <div class="flex items-center justify-between mb-2.5">
                     <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <i data-lucide="check-square" class="w-3.5 h-3.5 text-teal-600"></i> Assigned Action Deliverables
+                        <i data-lucide="check-square" class="w-3.5 h-3.5 text-teal-600"></i> Assigned Deliverables
                     </h4>
                     <span id="modalTaskCount" class="text-[11px] font-semibold bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-100">0 Tasks</span>
                 </div>
@@ -258,7 +260,7 @@
     </footer>
 
     <script>
-        // Master Dataset with Sandra replacing Africa
+        // Master Dataset (Sandra replaces Africa)
         const rawTimelineData = [
             {
                 date: 'Sept 24',
@@ -370,7 +372,7 @@
             }
         ];
 
-        // Owner Profiles
+        // Rich Team Profiles for Popout
         const ownerProfiles = {
             'Natia': {
                 title: 'GTM & Campaign Lead',
@@ -444,8 +446,10 @@
             }
         };
 
+        // Owner List (Updated to Sandra)
         const ownerList = ['All', 'Natia', 'Jervais', 'Angelita', 'Michelle', 'Sandra', 'Julia', 'Dev', 'Ebony', 'Joe', 'Team'];
 
+        // App Filter State
         let activeOwner = 'All';
         let activeTimeframe = 'All';
         let searchQuery = '';
@@ -707,5 +711,3 @@
     </script>
 </body>
 </html>
-
-```
