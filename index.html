@@ -1,717 +1,723 @@
+My apologies! Let's get both updates fixed right away in the code:
+
+1. **Replaced "Africa" with "Sandra"** across all timeline actions and data entries.
+
+
+2. **Enhanced Popout Details**: Added expanded profile metadata, key deliverables summary, status indicators, and clear action items inside the modal popout overlay.
+
+
+
+Here is the complete updated `index.html` file ready to be copied into GitHub:
+
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symple Leases - GTM Action Timeline & Operating Model</title>
+    <title>Symple Leases | Vertical GTM Action Timeline</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
+                        teal: {
+                            50: '#e6f7f5',
+                            100: '#b9e8e2',
+                            400: '#38b2ac',
+                            500: '#2c9690',
+                            600: '#146e75',
+                            800: '#0f5258',
+                            900: '#0a383c',
                         },
-                        dark: {
+                        navy: {
                             800: '#1e293b',
                             900: '#0f172a',
-                            950: '#020617',
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+        @media (min-width: 768px) {
+            .timeline-node-left::after {
+                content: '';
+                position: absolute;
+                top: 24px;
+                right: -24px;
+                width: 24px;
+                height: 2px;
+                background-color: #cbd5e1;
+                z-index: 10;
+            }
+            .timeline-node-right::after {
+                content: '';
+                position: absolute;
+                top: 24px;
+                left: -24px;
+                width: 24px;
+                height: 2px;
+                background-color: #cbd5e1;
+                z-index: 10;
+            }
+            .milestone-left::after, .milestone-right::after {
+                height: 3px !important;
+                background: linear-gradient(90deg, #38b2ac, #f59e0b) !important;
+            }
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+
+        .card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.12);
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(51, 65, 85, 0.8);
-            border-radius: 9999px;
+        
+        .owner-badge-interactive {
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(71, 85, 105, 1);
+        .owner-badge-interactive:hover {
+            transform: scale(1.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
     </style>
 </head>
-<body class="min-h-screen custom-scrollbar flex flex-col">
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans flex flex-col">
 
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="bg-emerald-500/10 border border-emerald-500/30 p-2.5 rounded-xl text-emerald-400">
-                    <i class="fa-solid fa-chart-line text-xl"></i>
+                <div class="w-10 h-10 rounded-xl bg-teal-400 flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-teal-400/30 transform -rotate-6">
+                    S
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-white tracking-tight">Symple Leases <span class="text-emerald-400 font-normal">| GTM Operating Plan</span></h1>
-                    <p class="text-xs text-slate-400">Vertical Action Timeline & Strategic Execution Framework</p>
+                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                        Symple Leases
+                        <span class="text-[11px] font-bold uppercase tracking-wider bg-teal-50 text-teal-600 border border-teal-100 px-2.5 py-0.5 rounded-full">Vertical GTM Plan</span>
+                    </h1>
+                    <p class="text-xs text-slate-500">Go-To-Market Execution Timeline & Ownership Matrix</p>
                 </div>
             </div>
 
-            <!-- North Star Target & Operating Principle Badge -->
-            <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
-                <button onclick="openOperatingModelModal()" class="bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 px-3.5 py-2 rounded-lg border border-slate-700 transition flex items-center gap-2">
-                    <i class="fa-solid fa-diagram-project text-emerald-400"></i>
-                    <span>Division of Labor</span>
-                </button>
-
-                <div class="bg-emerald-950/60 border border-emerald-500/40 px-4 py-1.5 rounded-lg flex items-center gap-3">
-                    <div class="text-right">
-                        <span class="block text-[10px] uppercase font-semibold text-emerald-400 tracking-wider">North Star Target</span>
-                        <span class="text-sm font-extrabold text-white">130 Service Pros</span>
-                    </div>
-                    <div class="h-8 w-px bg-emerald-500/30"></div>
-                    <div class="text-left">
-                        <span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Target Date</span>
-                        <span class="text-xs font-bold text-emerald-300">Dec 10, 2026</span>
-                    </div>
+            <!-- Quick Metrics Badge -->
+            <div class="flex items-center gap-3">
+                <div class="bg-slate-100 border border-slate-200 rounded-xl px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-slate-700">
+                    <i data-lucide="target" class="w-4 h-4 text-teal-600"></i>
+                    <span>Target: <strong>130 Service Pros</strong></span>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-amber-800">
+                    <i data-lucide="flag" class="w-4 h-4 text-amber-600"></i>
+                    <span>Target Date: <strong>Dec 10, 2026</strong></span>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 w-full">
-        <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-4 flex flex-col lg:flex-row gap-4 items-center justify-between">
+    <section class="bg-white border-b border-slate-200 shadow-xs sticky top-[65px] z-30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3">
             
-            <!-- Filters -->
-            <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
-                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2">Filter Owner:</span>
-                <button onclick="filterByOwner('ALL')" id="filter-all" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950 transition">All</button>
-                <button onclick="filterByOwner('Natia')" id="filter-natia" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Natia</button>
-                <button onclick="filterByOwner('Jervais')" id="filter-jervais" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Jervais</button>
-                <button onclick="filterByOwner('Sandra')" id="filter-sandra" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Sandra</button>
-                <button onclick="filterByOwner('Michelle')" id="filter-michelle" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Michelle</button>
-                <button onclick="filterByOwner('Dev')" id="filter-dev" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Dev</button>
-                <button onclick="filterByOwner('Julia')" id="filter-julia" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Julia</button>
-                <button onclick="filterByOwner('Angelita')" id="filter-angelita" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">Angelita</button>
-                <button onclick="filterByOwner('Zapier/AI')" id="filter-ai" class="owner-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">AI/Zapier</button>
+            <!-- Top Controls Row: Search + Timeframe -->
+            <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+                
+                <!-- Search Box -->
+                <div class="relative flex-1 max-w-md">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search deliverables, owners, actions..." 
+                           class="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:bg-white transition-all">
+                </div>
+
+                <!-- Timeframe / Phase Filter -->
+                <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 overflow-x-auto text-xs">
+                    <span class="text-[11px] font-bold text-slate-400 px-2 uppercase tracking-wider hidden sm:inline">Phase:</span>
+                    <button onclick="setTimeframe('All')" id="tf-All" class="tf-btn px-3 py-1 rounded-lg font-medium text-slate-700 bg-white shadow-xs transition-all">All</button>
+                    <button onclick="setTimeframe('September')" id="tf-September" class="tf-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition-all">September</button>
+                    <button onclick="setTimeframe('October')" id="tf-October" class="tf-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition-all">October</button>
+                    <button onclick="setTimeframe('November')" id="tf-November" class="tf-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition-all">November</button>
+                    <button onclick="setTimeframe('December')" id="tf-December" class="tf-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition-all">December</button>
+                </div>
             </div>
 
-            <!-- Quick Rule Reminder -->
-            <div class="text-xs text-slate-400 flex items-center gap-2 bg-slate-900/60 px-3 py-2 rounded-lg border border-slate-700/50 w-full lg:w-auto">
-                <i class="fa-solid fa-bullseye text-emerald-400"></i>
-                <span>Operating Rule: <strong>Does this help hit 130 SPs?</strong> If not, remove from critical path.</span>
+            <!-- Owner Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pt-1 pb-1 text-xs no-scrollbar">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex-shrink-0">Owner:</span>
+                <div id="ownerFilterPills" class="flex items-center gap-1.5">
+                    <!-- Dynamic Owner Filter Buttons -->
+                </div>
             </div>
+
         </div>
     </section>
 
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
         
-        <div id="timeline-container" class="relative border-l-2 border-slate-700 ml-4 md:ml-8 pl-6 md:pl-10 space-y-12">
-            <!-- Timeline items rendered dynamically by JS -->
+        <!-- Filter Summary Bar -->
+        <div class="flex items-center justify-between mb-8 pb-3 border-b border-slate-200 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+                <i data-lucide="filter" class="w-4 h-4 text-teal-600"></i>
+                <span id="activeFilterSummary" class="font-medium">Showing All Deliverables</span>
+            </div>
+            <button onclick="resetAllFilters()" class="text-teal-600 hover:text-teal-800 font-semibold flex items-center gap-1 transition-colors">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Filters
+            </button>
         </div>
 
+        <!-- VERTICAL TIMELINE SPINE WRAPPER -->
+        <div class="relative max-w-5xl mx-auto">
+            
+            <!-- Central Vertical Line Axis -->
+            <div class="absolute top-0 bottom-0 left-4 md:left-1/2 w-0.5 bg-slate-200 -translate-x-1/2 z-0"></div>
+            
+            <!-- Dynamic Vertical Nodes Rendered Here -->
+            <div id="verticalTimelineNodes" class="space-y-8 relative z-10">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Empty State Display -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-xs max-w-md mx-auto">
+                <i data-lucide="search-x" class="w-10 h-10 text-slate-300 mx-auto mb-3"></i>
+                <h3 class="text-sm font-bold text-slate-800">No deliverables found</h3>
+                <p class="text-xs text-slate-500 mt-1">Try resetting your filters or search keywords.</p>
+                <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-slate-800 transition-colors">
+                    Clear Filters
+                </button>
+            </div>
+
+        </div>
     </main>
 
-    <div id="operating-model-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-800/40">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg">
-                        <i class="fa-solid fa-users-gear text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg text-white">Team Operating Division of Labor</h3>
-                        <p class="text-xs text-slate-400">Core roles driving toward 130 Service Pros target</p>
-                    </div>
-                </div>
-                <button onclick="closeModal('operating-model-modal')" class="text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 custom-scrollbar">
-                <div class="bg-emerald-950/30 border border-emerald-500/30 p-4 rounded-xl">
-                    <h4 class="font-semibold text-emerald-400 text-xs uppercase tracking-wider mb-1">Core Operating Principle</h4>
-                    <p class="text-slate-200 text-xs sm:text-sm font-medium leading-relaxed">
-                        Natia decides → Michelle drives → Jervais sells → Sandra reaches → Julia publishes → Dev enables → Angelita protects product journey → AI/Zapier automate.
-                    </p>
-                </div>
+    <!-- ENHANCED OWNER DETAIL POPOUT BUBBLE / MODAL -->
+    <div id="ownerModalOverlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="closeOwnerModal(event)">
+        <div id="ownerModalBubble" class="bg-white border border-slate-200 rounded-3xl shadow-2xl max-w-lg w-full p-6 transform scale-95 transition-all duration-200 relative overflow-hidden" onclick="event.stopPropagation()">
+            
+            <!-- Close Button -->
+            <button onclick="closeOwnerModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition-colors z-10">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Natia</span> — <span class="text-slate-300">Optimization Engine</span>
-                        <p class="text-slate-400 mt-1">Reviews results, determines learnings, changes offer/message/channel priorities. Focuses on strategy rather than list maintenance.</p>
+            <!-- Header Info -->
+            <div class="flex items-start gap-4 mb-5">
+                <div id="modalAvatar" class="w-14 h-14 rounded-2xl flex items-center justify-center font-extrabold text-xl shadow-md flex-shrink-0">
+                    <!-- Dynamic Initials -->
+                </div>
+                <div class="pr-6">
+                    <div class="flex items-center gap-2 mb-1">
+                        <h3 id="modalOwnerName" class="text-xl font-extrabold text-slate-900 tracking-tight">Owner Name</h3>
+                        <span id="modalOwnerTag" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border">
+                            Role
+                        </span>
                     </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Michelle</span> — <span class="text-slate-300">Campaign Engine</span>
-                        <p class="text-slate-400 mt-1">Keeps leads, campaigns, tests, creators, webinar/demo logistics, and follow-ups moving seamlessly.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Jervais</span> — <span class="text-slate-300">Sales Engine</span>
-                        <p class="text-slate-400 mt-1">Works warm leads, follows up on campaign leads, personally closes higher-intent prospects using sales background strength.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Sandra</span> — <span class="text-slate-300">Outbound/Community Engine</span>
-                        <p class="text-slate-400 mt-1">Consistent prospecting, community engagement, and online outreach to build active lead pipelines.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Dev</span> — <span class="text-slate-300">Conversion Engine</span>
-                        <p class="text-slate-400 mt-1">Fixes friction, turns first LP into reusable components, enables marketing team to launch variants autonomously.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Julia</span> — <span class="text-slate-300">Content Engine</span>
-                        <p class="text-slate-400 mt-1">Builds searchable Service Pro content around actual questions/objections heard during sales outreach.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Angelita</span> — <span class="text-slate-300">Product Journey Guardian</span>
-                        <p class="text-slate-400 mt-1">Audits SP signup, profile, and activation journeys. Eliminates conversion barriers and product friction.</p>
-                    </div>
-                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                        <span class="font-bold text-emerald-400">Zapier / AI</span> — <span class="text-slate-300">Automation Engine</span>
-                        <p class="text-slate-400 mt-1">Handles lead capture, source attribution, automated follow-ups, and tracking required for launch.</p>
-                    </div>
+                    <p id="modalOwnerTitle" class="text-xs font-semibold text-teal-600">GTM Role Title</p>
+                    <p id="modalOwnerFocus" class="text-xs text-slate-500 mt-1">Core Focus Area</p>
                 </div>
             </div>
-            <div class="p-4 border-t border-slate-800 bg-slate-900 flex justify-end">
-                <button onclick="closeModal('operating-model-modal')" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-xs font-semibold">Close</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="action-detail-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <!-- Modal Header -->
-            <div class="p-5 border-b border-slate-800 flex justify-between items-start bg-slate-800/40">
-                <div class="flex gap-3 items-start">
-                    <div id="modal-icon" class="p-3 bg-emerald-500/20 text-emerald-400 rounded-xl text-lg mt-0.5">
-                        <i class="fa-solid fa-list-check"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span id="modal-phase-badge" class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-700 text-slate-300">Phase</span>
-                            <span id="modal-date" class="text-xs text-slate-400 font-medium">Date</span>
-                        </div>
-                        <h3 id="modal-title" class="font-bold text-lg text-white leading-snug">Action Title</h3>
-                    </div>
-                </div>
-                <button onclick="closeModal('action-detail-modal')" class="text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+            <!-- Focus Summary Box -->
+            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-3.5 mb-4 text-xs text-slate-600">
+                <span class="font-bold text-slate-800 block mb-1 flex items-center gap-1.5">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-teal-600"></i> Primary Scope & Responsibilities
+                </span>
+                <p id="modalOwnerBio" class="leading-relaxed">Bio summary details...</p>
             </div>
 
-            <!-- Modal Content Scrollable -->
-            <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-300 custom-scrollbar">
-                
-                <!-- Owner & Role Meta -->
-                <div class="grid grid-cols-2 gap-3 bg-slate-800/40 border border-slate-700/60 p-3 rounded-xl">
-                    <div>
-                        <span class="block text-[10px] uppercase font-bold text-slate-400">Assigned Owner(s)</span>
-                        <div id="modal-owner" class="text-sm font-semibold text-emerald-400 mt-0.5">Owner</div>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] uppercase font-bold text-slate-400">Strategic Focus</span>
-                        <div id="modal-role" class="text-sm font-medium text-slate-200 mt-0.5">Role Focus</div>
-                    </div>
-                </div>
-
-                <!-- Strategic Context & Details -->
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info text-emerald-400"></i> Execution Scope & Action Details
+            <!-- Key Deliverables & Action Items -->
+            <div>
+                <div class="flex items-center justify-between mb-2.5">
+                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="check-square" class="w-3.5 h-3.5 text-teal-600"></i> Assigned Action Deliverables
                     </h4>
-                    <div id="modal-details" class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-slate-200 space-y-2 leading-relaxed text-xs sm:text-sm">
-                        <!-- Filled by JS -->
-                    </div>
+                    <span id="modalTaskCount" class="text-[11px] font-semibold bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-100">0 Tasks</span>
                 </div>
 
-                <!-- Phase Context / Strategic Guidance -->
-                <div id="modal-phase-context-box" class="bg-emerald-950/20 border border-emerald-500/20 p-4 rounded-xl">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-compass text-emerald-400"></i> Phase Strategy Context
-                    </h4>
-                    <div id="modal-phase-context" class="text-xs text-slate-300 leading-relaxed space-y-2">
-                        <!-- Filled by JS -->
-                    </div>
+                <div id="modalDeliverablesList" class="space-y-2 max-h-56 overflow-y-auto pr-1 text-xs">
+                    <!-- Populated dynamically -->
                 </div>
-
             </div>
 
             <!-- Modal Footer -->
-            <div class="p-4 border-t border-slate-800 bg-slate-900 flex justify-between items-center">
-                <span class="text-[11px] text-slate-500">Symple Leases GTM Roadmap • 130 Service Pros Objective</span>
-                <button onclick="closeModal('action-detail-modal')" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition">
-                    Got it
+            <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                <span>Symple Leases GTM Matrix</span>
+                <button onclick="closeOwnerModal()" class="px-4 py-1.5 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition-colors">
+                    Done
                 </button>
             </div>
+
         </div>
     </div>
 
-    <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>Symple Leases GTM Action Plan & Execution Framework • Target: 130 Activated Service Pros by Dec 10</p>
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                <strong>Symple Leases</strong> GTM Execution Strategy
+            </span>
+            <span>Target Milestone: 130 Active Service Pros by Dec 10, 2026</span>
         </div>
     </footer>
 
     <script>
-        // Full Strategic Timeline Data with Comprehensive Popout Context
-        const timelineData = [
+        // Master Dataset with Sandra replacing Africa
+        const rawTimelineData = [
             {
-                phase: "LAUNCH PREPARATION",
-                phaseDate: "SEPTEMBER 24–30",
-                phaseColor: "emerald",
-                icon: "fa-rocket",
-                items: [
-                    {
-                        id: "sep-1",
-                        owner: "Natia",
-                        date: "Sept 24",
-                        title: "Lock Service Pro Offer, CTA + Coffee on Us Campaign",
-                        shortDesc: "Lock Service Pro value prop, Coffee on Us offer, first campaign hypothesis, CTA + success metrics",
-                        details: "Define and lock down the core Service Pro value proposition and Coffee on Us offer. Establish the explicit campaign hypothesis, call-to-action messaging, and success metrics for initial acquisition.",
-                        roleFocus: "Optimization Engine",
-                        phaseContext: "Natia decides and optimizes strategy: Sets direction, determines messaging/offer parameters, and refrains from administrative list maintenance."
-                    },
-                    {
-                        id: "sep-2",
-                        owner: "Jervais",
-                        date: "Sept 24",
-                        title: "Confirm Service Pro Count & Begin Direct Selling",
-                        shortDesc: "Confirm current SP count → exact gap to 130. Continue manual selling immediately. Identify first outreach list / warm prospects",
-                        details: "Audit active Service Pro counts to establish the exact numerical gap to 130. Immediately execute direct manual sales outreach to warm prospects and compile the primary target account list.",
-                        roleFocus: "Sales Engine",
-                        phaseContext: "Jervais acts as the sales engine: Leverages sales background strength to personally work warm leads and close high-intent prospects."
-                    },
-                    {
-                        id: "sep-3",
-                        owner: "Angelita",
-                        date: "Sept 24",
-                        title: "Service Pro Onboarding & Activation Journey Audit",
-                        shortDesc: "Audit Service Pro signup → profile → activation journey. Flag anything that will hurt conversion",
-                        details: "Conduct an end-to-end audit of the Service Pro user flow (Signup → Profile → Activation). Flag and eliminate product friction, broken flows, or UX barriers that degrade conversion.",
-                        roleFocus: "Product Journey Guardian",
-                        phaseContext: "Angelita protects the product journey: Guarantees that acquired traffic experiences seamless activation without product drop-off."
-                    },
-                    {
-                        id: "sep-4",
-                        owner: "Dev",
-                        date: "Sept 25–29",
-                        title: "Build Reusable Service Pro Landing Page Architecture",
-                        shortDesc: "Recommend Webflow/alternative + define reusable LP/site design system. Build first Service Pro LP, not whole website",
-                        details: "Select the optimal landing page platform (Webflow/alternative) and define a modular design system. Focus exclusively on building the high-converting Service Pro LP rather than rebuilding the corporate site.",
-                        roleFocus: "Conversion Engine",
-                        phaseContext: "Dev enables marketing: Fixes technical friction and transforms LPs into reusable components for autonomous marketing releases."
-                    },
-                    {
-                        id: "sep-5",
-                        owner: "Michelle",
-                        date: "Start Sept 24",
-                        title: "Campaign Production & Operations Setup",
-                        shortDesc: "Become campaign producer. Set up campaign checklist, source/UTM structure, Coffee on Us logistics, prospect/creator research, QA",
-                        details: "Serve as campaign producer. Establish operational checklists, UTM source tracking, Coffee on Us fulfillment logistics, creator/prospect research, and campaign QA.",
-                        roleFocus: "Campaign Engine",
-                        phaseContext: "Michelle drives campaign execution: Keeps leads, campaign workflows, webinar/demo logistics, and partner operations moving systematically."
-                    },
-                    {
-                        id: "sep-6",
-                        owner: "Sandra",
-                        date: "Sept 24 onward",
-                        title: "Outbound Community Prospecting & Outreach",
-                        shortDesc: "Build first targeted SP prospect/community lists + begin organic/community outreach where possible",
-                        details: "Build curated prospect and community databases. Initiate direct organic engagement and targeted community outreach across active channels.",
-                        roleFocus: "Outbound / Community Engine",
-                        phaseContext: "Sandra drives outbound outreach: Maintains consistent prospecting and online community engagement to generate pipeline."
-                    },
-                    {
-                        id: "sep-7",
-                        owner: "Julia",
-                        date: "Sept 25 onward",
-                        title: "Objection-Driven Content Creation",
-                        shortDesc: "Produce first Service-Pro search/content pieces from the approved positioning",
-                        details: "Draft and publish search-optimized content derived directly from locked positioning, addressing real market questions and customer objections.",
-                        roleFocus: "Content Engine",
-                        phaseContext: "Julia publishes targeted content: Focuses on actual questions and objections heard during sales calls rather than arbitrary calendars."
-                    },
-                    {
-                        id: "sep-8",
-                        owner: "Jervais + Joe + Ebony",
-                        date: "Book this week",
-                        title: "Service Pro Guided Interview & Social Proof Production",
-                        shortDesc: "Lock Joe recording date; guided interview/script; Ebony handles shoot logistics",
-                        details: "Lock recording dates and interview scripts highlighting professionalism, verification, and long-term client relationships. Ebony manages all shoot logistics.",
-                        roleFocus: "Social Proof Assets",
-                        phaseContext: "Produces credible Service Pro proof to establish trust and overcome objections during sales conversations."
-                    },
-                    {
-                        id: "sep-9",
-                        owner: "Zapier/AI",
-                        date: "Sept 29",
-                        title: "Automate Lead Capture, Routing & Follow-Up",
-                        shortDesc: "Lead capture → source → follow-up → tracking. Automate only what's required to launch",
-                        details: "Connect lead capture forms to CRM via Zapier/AI. Automate source attribution, follow-up notifications, and lead tracking strictly required for launch.",
-                        roleFocus: "Automation Engine",
-                        phaseContext: "AI/Zapier automate repetitive tasks: Handles routing, reminders, and tracking required to support the team."
-                    },
-                    {
-                        id: "sep-10",
-                        owner: "TEAM",
-                        date: "Sept 30",
-                        title: "🚀 SERVICE PRO CAMPAIGN #1 LIVE",
-                        shortDesc: "Official launch of Service Pro Campaign #1 across selected outreach & acquisition channels",
-                        details: "Launch Campaign #1 across all channels. Activate landing pages, tracking mechanisms, outreach scripts, and automated lead follow-up workflows.",
-                        roleFocus: "Critical Milestone",
-                        phaseContext: "Completes launch prep and initiates the live testing phase."
-                    }
+                date: 'Sept 24',
+                phase: 'September',
+                status: 'In Progress',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Natia', action: 'Lock Service Pro offer, CTA + Coffee on Us campaign' },
+                    { owner: 'Jervais', action: 'Confirm current Service Pro count + gap to 130' },
+                    { owner: 'Angelita', action: 'QA Service Pro signup → profile → activation' },
+                    { owner: 'Michelle', action: 'Set up GTM action tracker + campaign production checklist' }
                 ]
             },
             {
-                phase: "PROVE THE FUNNEL",
-                phaseDate: "OCT 1–15",
-                phaseColor: "blue",
-                icon: "fa-vial",
-                phaseSummary: "Resist launching twelve things at once. Find out whether we can repeatedly acquire and activate Service Pros across distinct test paths.",
-                items: [
-                    {
-                        id: "oct1-1",
-                        owner: "Jervais",
-                        date: "Oct 1–15",
-                        title: "Sales Engine Execution & Pipeline Closing",
-                        shortDesc: "Work warm leads, follow up on campaign leads, personally close higher-intent prospects.",
-                        details: "Drive direct sales execution: Work warm prospect pipelines, execute rapid follow-ups on fresh campaign leads, and personally close higher-intent prospects.",
-                        roleFocus: "Sales Engine",
-                        phaseContext: "Jervais acts as the primary sales engine during initial funnel testing."
-                    },
-                    {
-                        id: "oct1-2",
-                        owner: "Sandra",
-                        date: "Oct 1–15",
-                        title: "Outbound Prospecting & Reddit Outreach Test",
-                        shortDesc: "Consistent prospecting, online outreach, and Reddit/community testing.",
-                        details: "Maintain steady daily prospecting and execute targeted outreach across Reddit and specialized online service communities.",
-                        roleFocus: "Outbound Engine",
-                        phaseContext: "Sandra drives outbound/community lead generation to compare against paid campaign paths."
-                    },
-                    {
-                        id: "oct1-3",
-                        owner: "Michelle",
-                        date: "Oct 1–15",
-                        title: "Campaign Operations & Follow-Up Tracking",
-                        shortDesc: "Keep leads, campaigns, tests, creators, webinar/demo logistics and follow-ups moving.",
-                        details: "Manage campaign operations, Coffee on Us fulfillment, creator assets, and lead tracking to ensure zero follow-up drop-off.",
-                        roleFocus: "Campaign Engine",
-                        phaseContext: "Michelle maintains campaign operations and tracking continuity."
-                    },
-                    {
-                        id: "oct1-4",
-                        owner: "Natia",
-                        date: "Oct 1–15",
-                        title: "Funnel Optimization & Strategic Adjustments",
-                        shortDesc: "Review results, determine learnings, adjust offer/message/channel priorities.",
-                        details: "Analyze incoming funnel data, determine core channel learnings, and refine offers, messaging, and channel allocations based on conversion data.",
-                        roleFocus: "Optimization Engine",
-                        phaseContext: "Natia focuses on high-level optimization decisions rather than execution logistics."
-                    },
-                    {
-                        id: "oct1-5",
-                        owner: "Dev",
-                        date: "Oct 1–15",
-                        title: "Landing Page Friction Removal & Reusable Components",
-                        shortDesc: "Fix friction and turn the first LP into reusable components for marketing variants.",
-                        details: "Resolve UX friction discovered in live traffic. Convert LP structures into reusable code components so marketing can deploy variants independently.",
-                        roleFocus: "Conversion Engine",
-                        phaseContext: "Dev optimizes conversion elements and empowers marketing independence."
-                    },
-                    {
-                        id: "oct1-6",
-                        owner: "Julia",
-                        date: "Oct 1–15",
-                        title: "Search & Objection-Focused Content Production",
-                        shortDesc: "Build searchable content around actual questions/objections heard on calls.",
-                        details: "Produce targeted content answering direct objections, questions, and concerns uncovered during sales interactions.",
-                        roleFocus: "Content Engine",
-                        phaseContext: "Julia creates high-intent content addressing real-time sales feedback."
-                    }
+                date: 'Sept 24–26',
+                phase: 'September',
+                status: 'In Progress',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Sandra', action: 'Build prospect/community lists + begin outreach' },
+                    { owner: 'Jervais', action: 'Continue direct SP recruiting + follow-up' },
+                    { owner: 'Julia', action: 'Start first Service Pro search/blog content' },
+                    { owner: 'Michelle', action: 'Coordinate Coffee on Us campaign + tracking/UTMs' },
+                    { owner: 'Dev', action: 'Lock site platform + reusable LP architecture/design' }
                 ]
             },
             {
-                phase: "DOUBLE DOWN",
-                phaseDate: "OCT 16–31",
-                phaseColor: "purple",
-                icon: "fa-chart-line",
-                phaseSummary: "Identify channels producing activated Service Pros (not just clicks). Kill weak tests, double down on winners, and introduce live proof events.",
-                items: [
-                    {
-                        id: "oct2-1",
-                        owner: "TEAM",
-                        date: "Oct 16–31",
-                        title: "Scale Winning Channels & Prune Weak Tests",
-                        shortDesc: "Kill or change weak tests. Increase effort behind what is working.",
-                        details: "Evaluate mid-month activation performance. Eliminate underperforming campaign channels and reallocate budget and effort into high-converting paths.",
-                        roleFocus: "Strategic Focus",
-                        phaseContext: "Focus strictly on channels generating activated Service Pros over vanity traffic."
-                    },
-                    {
-                        id: "oct2-2",
-                        owner: "Michelle + Jervais",
-                        date: "Oct 16–31",
-                        title: "Live Service Pro Event / Webinar Launch",
-                        shortDesc: "Introduce live Service Pro event based on validated demand from Phase 1.",
-                        details: "Host a live event or webinar showcasing verified profile benefits and client retention strategies based on validated user interest.",
-                        roleFocus: "Event Conversion",
-                        phaseContext: "Deploys live events only after initial tests clarify what topics resonate with prospects."
-                    },
-                    {
-                        id: "oct2-3",
-                        owner: "Jervais + Joe",
-                        date: "Oct 16–31",
-                        title: "Deploy Service Pro Proof & Verification Content",
-                        shortDesc: "Deploy Joe's content focused on professionalism, verification, and client relationships.",
-                        details: "Incorporate authentic testimonial clips and verification assets across sales decks, landing pages, and outreach messages.",
-                        roleFocus: "Trust Assets",
-                        phaseContext: "Leverages credible proof assets to overcome late-stage prospect hesitation."
-                    },
-                    {
-                        id: "oct2-4",
-                        owner: "Dev",
-                        date: "Oct 16–31",
-                        title: "Initiate Property Manager Marketing Architecture",
-                        shortDesc: "Begin Property Manager marketing experience using verified component architecture.",
-                        details: "Begin engineering the Property Manager GTM web experience using the modular component system established during Phase 1.",
-                        roleFocus: "Architecture Expansion",
-                        phaseContext: "Prepares infrastructure for Persona #2 while keeping core focus on Service Pros."
-                    }
+                date: 'Sept 25–29',
+                phase: 'September',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Dev', action: 'Build Service Pro LP + tracking' },
+                    { owner: 'Michelle + Ebony', action: 'Schedule Joe shoot + production logistics' },
+                    { owner: 'Natia + Joe', action: 'Prep guided interview / proof story' },
+                    { owner: 'Michelle', action: 'Connect LP → Zapier → follow-up + campaign tracking' }
                 ]
             },
             {
-                phase: "SCALE + OPEN PERSONA #2",
-                phaseDate: "NOVEMBER 1–30",
-                phaseColor: "amber",
-                icon: "fa-repeat",
-                phaseSummary: "Transform Service Pro acquisition into a weekly operational rhythm. Initiate Property Manager GTM to drive supply/demand network effects.",
-                items: [
-                    {
-                        id: "nov-1",
-                        owner: "TEAM",
-                        date: "Every Monday",
-                        title: "Weekly Operating Rhythm & Funnel Review",
-                        shortDesc: "Weekly review: Target → Actual → Gap → Leads → Conversion → Activated → Best Source → Biggest Blocker → Experiment.",
-                        details: "Execute weekly growth reviews following the 9-point operational cadence to analyze gaps, remove blockers, and run weekly experiments.",
-                        roleFocus: "Weekly Machine",
-                        phaseContext: "Establishes a predictable weekly cadence driving toward the 130 SP target."
-                    },
-                    {
-                        id: "nov-2",
-                        owner: "Natia + TEAM",
-                        date: "Nov 1–30",
-                        title: "Launch Property Manager GTM Expansion",
-                        shortDesc: "Start Property Manager GTM without taking foot off Service Pro momentum.",
-                        details: "Initiate targeted GTM campaigns for Property Managers to bring property supply into the marketplace, compounding value for Service Pros.",
-                        roleFocus: "Marketplace Expansion",
-                        phaseContext: "Property Managers bring property supply that increases ecosystem value for Service Pros."
-                    }
+                date: 'SEPT 30',
+                phase: 'September',
+                status: 'Critical Milestone',
+                isCritical: true,
+                title: '🚀 SERVICE PRO CAMPAIGN #1 LIVE',
+                deliverables: [
+                    { owner: 'TEAM', action: '🚀 SERVICE PRO CAMPAIGN #1 LIVE Launch across all target acquisition channels' }
                 ]
             },
             {
-                phase: "CLOSE THE GAP",
-                phaseDate: "DEC 1–10",
-                phaseColor: "emerald",
-                icon: "fa-flag-checkered",
-                phaseSummary: "Halt new experiments. Execute an all-out sales close sprint to hit the 130 Service Pros target by December 10.",
-                items: [
-                    {
-                        id: "dec-1",
-                        owner: "Jervais",
-                        date: "Dec 1–10",
-                        title: "Sales Close Sprint Leadership",
-                        shortDesc: "Jervais owns the remaining gap to 130 activated Service Pros.",
-                        details: "Directly manage and close all open pipeline prospects, executing 1-on-1 outreach to secure final activations.",
-                        roleFocus: "Sales Leadership",
-                        phaseContext: "Jervais leads the final sprint to close the remaining gap to 130."
-                    },
-                    {
-                        id: "dec-2",
-                        owner: "Sandra",
-                        date: "Dec 1–10",
-                        title: "Unconverted Lead Re-engagement Blitz",
-                        shortDesc: "Sandra re-engages unconverted outreach prospects.",
-                        details: "Re-contact cold leads, past event attendees, and unconverted prospects with targeted re-engagement offers.",
-                        roleFocus: "Pipeline Re-activation",
-                        phaseContext: "Sandra re-engages existing lead pools to drive conversions."
-                    },
-                    {
-                        id: "dec-3",
-                        owner: "Michelle",
-                        date: "Dec 1–10",
-                        title: "100% Lead Disposition & Tracking Audit",
-                        shortDesc: "Ensure every lead has a clear disposition with zero dropped follow-ups.",
-                        details: "Audit CRM records to ensure every prospect has a final disposition and no lead goes uncontacted.",
-                        roleFocus: "Operations QA",
-                        phaseContext: "Michelle prevents pipeline drop-off during the final close sprint."
-                    },
-                    {
-                        id: "dec-4",
-                        owner: "Natia",
-                        date: "Dec 1–10",
-                        title: "Reallocate All Bandwidth to Top Channels",
-                        shortDesc: "Reallocate all effort toward highest-converting sources and offers.",
-                        details: "Shift remaining resources and team focus strictly into the top-converting channels and offers.",
-                        roleFocus: "Resource Allocation",
-                        phaseContext: "Natia directs bandwidth exclusively toward proven, high-yielding paths."
-                    },
-                    {
-                        id: "dec-5",
-                        owner: "Zapier/AI",
-                        date: "Dec 1–10",
-                        title: "Automated Nurture & Activation Reminders",
-                        shortDesc: "Automation handles reminders and nurture sequences.",
-                        details: "Deploy automated reminder workflows to nudge pending signups across the profile activation threshold.",
-                        roleFocus: "Automated Conversion",
-                        phaseContext: "Automation supports manual closing efforts."
-                    },
-                    {
-                        id: "dec-6",
-                        owner: "TEAM",
-                        date: "DECEMBER 10",
-                        title: "🎯 130 SERVICE PROS TARGET REACHED",
-                        shortDesc: "Achieve North Star Target. Organizational focus progressively expands to PMs, Landlords, and Hosts.",
-                        details: "Achieve the 130 activated Service Pro target. Transition operational focus toward expanding PM, Landlord, and Host market segments.",
-                        roleFocus: "North Star Goal",
-                        phaseContext: "Validates GTM model and paves the way for multi-persona expansion."
-                    }
+                date: 'Oct 1–9',
+                phase: 'October',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Jervais', action: 'Sell + personally follow up high-intent leads' },
+                    { owner: 'Sandra', action: 'Outreach + communities + Reddit test' },
+                    { owner: 'Michelle', action: 'Run campaign operations + lead tracking' },
+                    { owner: 'Julia', action: 'Publish/repurpose SP content' },
+                    { owner: 'Natia', action: 'Review results + adjust offer/message' }
+                ]
+            },
+            {
+                date: 'Oct 10–16',
+                phase: 'October',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Team', action: 'Launch Campaign/Test #2 based on early results' },
+                    { owner: 'Joe + Ebony', action: 'Produce Service Pro proof/video assets' }
+                ]
+            },
+            {
+                date: 'Oct 17–31',
+                phase: 'October',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Team', action: 'Scale winning SP channels + test live event/webinar' },
+                    { owner: 'Dev', action: 'Begin Property Manager marketing experience' }
+                ]
+            },
+            {
+                date: 'November',
+                phase: 'November',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Team', action: 'SP acquisition runs weekly + launch Property Manager GTM' }
+                ]
+            },
+            {
+                date: 'Dec 1–10',
+                phase: 'December',
+                status: 'Upcoming',
+                isCritical: false,
+                deliverables: [
+                    { owner: 'Jervais + GTM Team', action: 'Close remaining SP gap; focus on highest-converting channels' }
+                ]
+            },
+            {
+                date: 'DEC 10',
+                phase: 'December',
+                status: 'Critical Milestone',
+                isCritical: true,
+                title: '🎯 130 SERVICE PRO TARGET',
+                deliverables: [
+                    { owner: 'TEAM', action: '🎯 130 SERVICE PRO TARGET ACCOMPLISHED' }
                 ]
             }
         ];
 
-        let currentFilter = 'ALL';
+        // Owner Profiles
+        const ownerProfiles = {
+            'Natia': {
+                title: 'GTM & Campaign Lead',
+                tag: 'Marketing',
+                focus: 'Offer Positioning, Campaign Messaging & Conversion Design',
+                bio: 'Owns Service Pro offer formulation, CTA messaging, guided interview narratives, and review of marketing metrics.',
+                colorBg: 'bg-purple-500 text-white shadow-purple-500/30'
+            },
+            'Jervais': {
+                title: 'Sales & Growth Lead',
+                tag: 'Acquisition',
+                focus: 'High-Intent Prospecting, Direct Recruiting & Closing',
+                bio: 'Responsible for direct outreach, closing high-intent Service Pros, and achieving the final 130 onboarded pro target.',
+                colorBg: 'bg-blue-600 text-white shadow-blue-500/30'
+            },
+            'Angelita': {
+                title: 'Product QA & Onboarding',
+                tag: 'User Flow',
+                focus: 'Signup Experience, Profile Quality & Activation',
+                bio: 'Ensures seamless end-to-end user friction checks from initial signup through profile creation to full platform activation.',
+                colorBg: 'bg-pink-500 text-white shadow-pink-500/30'
+            },
+            'Michelle': {
+                title: 'GTM Operations & Ops Lead',
+                tag: 'Operations',
+                focus: 'Campaign Logistics, Tracking, UTMs & Zapier Integrations',
+                bio: 'Manages campaign production checklists, action tracking, marketing automation pipelines, and operational alignment.',
+                colorBg: 'bg-amber-500 text-white shadow-amber-500/30'
+            },
+            'Sandra': {
+                title: 'Outreach & Community Growth',
+                tag: 'Growth',
+                focus: 'Community Sourcing, Reddit Tests & Direct Prospecting',
+                bio: 'Leads direct community list building, subreddit engagement, and prospecting for early-adopter Service Pros.',
+                colorBg: 'bg-emerald-600 text-white shadow-emerald-500/30'
+            },
+            'Julia': {
+                title: 'Content Strategy & SEO',
+                tag: 'Content',
+                focus: 'Search Optimization, Blog Content & Repurposing',
+                bio: 'Develops targeted search and blog articles tailored to Service Pros, continually repurposing top content.',
+                colorBg: 'bg-indigo-600 text-white shadow-indigo-500/30'
+            },
+            'Dev': {
+                title: 'Engineering & Marketing Arch',
+                tag: 'Product / Tech',
+                focus: 'Landing Pages, Analytics Tracking & Tech Stack Integration',
+                bio: 'Builds landing page architectures, event pixel tracking, Zapier automation bridges, and PM platform experiences.',
+                colorBg: 'bg-cyan-600 text-white shadow-cyan-500/30'
+            },
+            'Ebony': {
+                title: 'Video & Content Production',
+                tag: 'Media',
+                focus: 'Shoot Logistics, Media Production & Proof Asset Creation',
+                bio: 'Coordinates filming schedules, logistics, and video asset creation to showcase Service Pro proof stories.',
+                colorBg: 'bg-teal-600 text-white shadow-teal-500/30'
+            },
+            'Joe': {
+                title: 'Service Pro Advocate / Storyteller',
+                tag: 'Branding',
+                focus: 'Case Studies, Guided Interviews & Video Proof',
+                bio: 'Featured partner serving as the key ambassador for video case studies and authentic Service Pro testimonials.',
+                colorBg: 'bg-teal-600 text-white shadow-teal-500/30'
+            },
+            'Team': {
+                title: 'Cross-Functional GTM Taskforce',
+                tag: 'All Hands',
+                focus: 'Campaign Launches, Scale-Up Phase & Strategy Alignment',
+                bio: 'Collective execution squad driving cross-channel campaigns, live events, and major milestone achievements.',
+                colorBg: 'bg-slate-900 text-white shadow-slate-900/30'
+            }
+        };
 
-        function renderTimeline() {
-            const container = document.getElementById('timeline-container');
-            container.innerHTML = '';
+        const ownerList = ['All', 'Natia', 'Jervais', 'Angelita', 'Michelle', 'Sandra', 'Julia', 'Dev', 'Ebony', 'Joe', 'Team'];
 
-            timelineData.forEach((phaseData) => {
-                // Filter items inside phase
-                const filteredItems = phaseData.items.filter(item => {
-                    if (currentFilter === 'ALL') return true;
-                    return item.owner.toLowerCase().includes(currentFilter.toLowerCase());
-                });
+        let activeOwner = 'All';
+        let activeTimeframe = 'All';
+        let searchQuery = '';
 
-                if (filteredItems.length === 0) return;
-
-                // Phase Header Element
-                const phaseHeader = document.createElement('div');
-                phaseHeader.className = "relative mb-6";
-                phaseHeader.innerHTML = `
-                    <div class="absolute -left-[31px] md:-left-[47px] top-0 bg-slate-900 border-2 border-${phaseData.phaseColor}-500 text-${phaseData.phaseColor}-400 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shadow-lg shadow-${phaseData.phaseColor}-500/20">
-                        <i class="fa-solid ${phaseData.icon}"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">${phaseData.phase}</h2>
-                            <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300">${phaseData.phaseDate}</span>
-                        </div>
-                        ${phaseData.phaseSummary ? `<p class="text-xs text-slate-400 mt-1 max-w-2xl">${phaseData.phaseSummary}</p>` : ''}
-                    </div>
-                `;
-                container.appendChild(phaseHeader);
-
-                // Grid/Container for items in this phase
-                const itemGrid = document.createElement('div');
-                itemGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-4 mb-10";
-
-                filteredItems.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = "bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-emerald-500/50 rounded-xl p-4 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl flex flex-col justify-between group";
-                    card.onclick = () => openActionModal(item, phaseData);
-
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <span class="text-[11px] font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">
-                                    ${item.owner}
-                                </span>
-                                <span class="text-xs font-medium text-slate-400">${item.date}</span>
-                            </div>
-                            <h3 class="font-semibold text-sm text-slate-100 group-hover:text-emerald-300 transition-colors leading-snug mb-2">
-                                ${item.title}
-                            </h3>
-                            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                                ${item.shortDesc}
-                            </p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
-                            <span class="truncate max-w-[180px]"><i class="fa-solid fa-user-gear mr-1 text-slate-500"></i> ${item.roleFocus}</span>
-                            <span class="text-emerald-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                            </span>
-                        </div>
-                    `;
-                    itemGrid.appendChild(card);
-                });
-
-                container.appendChild(itemGrid);
-            });
-        }
-
-        function openActionModal(item, phaseData) {
-            document.getElementById('modal-title').innerText = item.title;
-            document.getElementById('modal-date').innerText = item.date;
-            document.getElementById('modal-phase-badge').innerText = phaseData.phase;
-            document.getElementById('modal-owner').innerText = item.owner;
-            document.getElementById('modal-role').innerText = item.roleFocus;
+        function getOwnerBadge(owner) {
+            const cleanOwner = owner.split(' ')[0].replace('+', '').toLowerCase();
+            let bg = 'bg-slate-100 text-slate-700 border-slate-200';
             
-            document.getElementById('modal-details').innerHTML = `
-                <p class="mb-2 font-medium text-slate-100">${item.shortDesc}</p>
-                <p class="text-slate-300 text-xs sm:text-sm">${item.details}</p>
-            `;
-
-            document.getElementById('modal-phase-context').innerHTML = `
-                <p class="text-slate-300">${item.phaseContext}</p>
-                ${phaseData.phaseSummary ? `<p class="mt-2 text-slate-400 italic">Phase Goal: ${phaseData.phaseSummary}</p>` : ''}
-            `;
-
-            document.getElementById('action-detail-modal').classList.remove('hidden');
-        }
-
-        function openOperatingModelModal() {
-            document.getElementById('operating-model-modal').classList.remove('hidden');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        function filterByOwner(owner) {
-            currentFilter = owner;
-            
-            // Update filter buttons styling
-            document.querySelectorAll('.owner-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-emerald-500', 'text-slate-950');
-                btn.classList.add('bg-slate-700', 'text-slate-300');
-            });
-
-            const activeBtn = document.getElementById(`filter-${owner.toLowerCase().replace('/', '')}`) || document.getElementById('filter-all');
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-slate-700', 'text-slate-300');
-                activeBtn.classList.add('bg-emerald-500', 'text-slate-950');
+            switch(cleanOwner) {
+                case 'natia': bg = 'bg-purple-100 text-purple-800 border-purple-200'; break;
+                case 'jervais': bg = 'bg-blue-100 text-blue-800 border-blue-200'; break;
+                case 'angelita': bg = 'bg-pink-100 text-pink-800 border-pink-200'; break;
+                case 'michelle': bg = 'bg-amber-100 text-amber-800 border-amber-200'; break;
+                case 'sandra': bg = 'bg-emerald-100 text-emerald-800 border-emerald-200'; break;
+                case 'julia': bg = 'bg-indigo-100 text-indigo-800 border-indigo-200'; break;
+                case 'dev': bg = 'bg-cyan-100 text-cyan-800 border-cyan-200'; break;
+                case 'team': bg = 'bg-slate-900 text-white border-slate-800'; break;
+                case 'ebony': case 'joe': bg = 'bg-teal-100 text-teal-800 border-teal-200'; break;
             }
 
+            return `<span onclick="openOwnerModal('${owner}', event)" class="owner-badge-interactive inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border ${bg}">${owner}</span>`;
+        }
+
+        function openOwnerModal(ownerName, event) {
+            if (event) event.stopPropagation();
+
+            const primaryOwner = ownerName.split(' ')[0].replace('+', '');
+            const profile = ownerProfiles[primaryOwner] || ownerProfiles['Team'];
+
+            let matchedDeliverables = [];
+            rawTimelineData.forEach(node => {
+                node.deliverables.forEach(d => {
+                    if (d.owner.toLowerCase().includes(primaryOwner.toLowerCase())) {
+                        matchedDeliverables.push({
+                            date: node.date,
+                            phase: node.phase,
+                            status: node.status,
+                            action: d.action
+                        });
+                    }
+                });
+            });
+
+            document.getElementById('modalOwnerName').innerText = ownerName;
+            document.getElementById('modalOwnerTitle').innerText = profile.title;
+            document.getElementById('modalOwnerTag').innerText = profile.tag;
+            document.getElementById('modalOwnerFocus').innerText = profile.focus;
+            document.getElementById('modalOwnerBio').innerText = profile.bio;
+            
+            const avatarEl = document.getElementById('modalAvatar');
+            avatarEl.className = `w-14 h-14 rounded-2xl flex items-center justify-center font-extrabold text-xl shadow-md flex-shrink-0 ${profile.colorBg}`;
+            avatarEl.innerText = primaryOwner.substring(0, 2).toUpperCase();
+
+            document.getElementById('modalTaskCount').innerText = `${matchedDeliverables.length} Deliverables`;
+
+            const listContainer = document.getElementById('modalDeliverablesList');
+            if (matchedDeliverables.length === 0) {
+                listContainer.innerHTML = `<p class="text-slate-400 italic">No specific deliverables logged.</p>`;
+            } else {
+                listContainer.innerHTML = matchedDeliverables.map(item => `
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2.5">
+                        <span class="px-2 py-0.5 text-[10px] font-bold bg-white text-slate-700 border border-slate-200 rounded-md flex-shrink-0 mt-0.5">
+                            ${item.date}
+                        </span>
+                        <div class="flex-1">
+                            <p class="text-slate-700 leading-snug font-medium">${item.action}</p>
+                            <span class="text-[10px] font-semibold text-slate-400 block mt-1">${item.phase} · ${item.status}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const overlay = document.getElementById('ownerModalOverlay');
+            const bubble = document.getElementById('ownerModalBubble');
+            
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            bubble.classList.remove('scale-95');
+            bubble.classList.add('scale-100');
+
+            lucide.createIcons();
+        }
+
+        function closeOwnerModal(event) {
+            if (event && event.stopPropagation) event.stopPropagation();
+            const overlay = document.getElementById('ownerModalOverlay');
+            const bubble = document.getElementById('ownerModalBubble');
+            
+            bubble.classList.remove('scale-100');
+            bubble.classList.add('scale-95');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeOwnerModal();
+        });
+
+        function renderOwnerFilters() {
+            const container = document.getElementById('ownerFilterPills');
+            container.innerHTML = ownerList.map(owner => {
+                const isActive = activeOwner === owner;
+                const activeStyle = isActive 
+                    ? 'bg-slate-900 text-white border-slate-900 font-bold shadow-xs' 
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border-slate-200 font-medium';
+                
+                return `
+                    <button onclick="setOwner('${owner}')" class="px-2.5 py-1 rounded-lg text-xs border transition-all flex-shrink-0 ${activeStyle}">
+                        ${owner}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function getFilteredData() {
+            return rawTimelineData.map(node => {
+                if (activeTimeframe !== 'All' && node.phase !== activeTimeframe) {
+                    return null;
+                }
+
+                const matchingDeliverables = node.deliverables.filter(item => {
+                    const matchesOwner = activeOwner === 'All' || item.owner.toLowerCase().includes(activeOwner.toLowerCase());
+                    const matchesSearch = searchQuery === '' || 
+                                          item.action.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                          item.owner.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          node.date.toLowerCase().includes(searchQuery.toLowerCase());
+                    
+                    return matchesOwner && matchesSearch;
+                });
+
+                if (matchingDeliverables.length === 0) return null;
+
+                return {
+                    ...node,
+                    filteredDeliverables: matchingDeliverables
+                };
+            }).filter(Boolean);
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('verticalTimelineNodes');
+            const emptyState = document.getElementById('emptyState');
+            const filteredNodes = getFilteredData();
+
+            document.getElementById('activeFilterSummary').innerText = 
+                `Showing ${filteredNodes.length} milestone block(s) · Owner: ${activeOwner} · Phase: ${activeTimeframe}`;
+
+            if (filteredNodes.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = filteredNodes.map((node, index) => {
+                const isEven = index % 2 === 0;
+                const sideClass = isEven ? 'md:ml-auto md:pl-8 timeline-node-right' : 'md:mr-auto md:pr-8 timeline-node-left';
+                
+                let cardStyle = "bg-white border-slate-200 shadow-xs";
+                let badgeStyle = "bg-slate-100 text-slate-700 border-slate-200";
+                let dotStyle = "bg-teal-400 border-white ring-4 ring-teal-100";
+                
+                if (node.isCritical) {
+                    cardStyle = "bg-gradient-to-br from-slate-900 to-slate-800 text-white border-slate-700 shadow-xl shadow-slate-900/10 milestone-" + (isEven ? 'right' : 'left');
+                    badgeStyle = "bg-amber-400 text-slate-950 font-extrabold border-amber-300";
+                    dotStyle = "bg-amber-400 border-slate-900 ring-4 ring-amber-400/30 w-6 h-6";
+                }
+
+                return `
+                    <div class="relative flex flex-col md:flex-row items-center w-full">
+                        <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${dotStyle} z-20 flex items-center justify-center"></div>
+
+                        <div class="w-full md:w-1/2 pl-12 md:pl-0 ${sideClass}">
+                            <div class="card-hover p-5 rounded-2xl border ${cardStyle} relative">
+                                
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded-md text-xs font-bold border ${badgeStyle}">
+                                            ${node.date}
+                                        </span>
+                                        <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                                            ${node.phase}
+                                        </span>
+                                    </div>
+                                    ${node.isCritical ? `
+                                        <span class="flex items-center gap-1 text-[10px] font-extrabold text-amber-300 uppercase tracking-wider bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-full">
+                                            <i data-lucide="zap" class="w-3 h-3 text-amber-400"></i> Milestone
+                                        </span>
+                                    ` : `
+                                        <span class="text-[10px] font-semibold text-slate-400">
+                                            ${node.status}
+                                        </span>
+                                    `}
+                                </div>
+
+                                ${node.title ? `
+                                    <h3 class="text-base font-extrabold text-amber-300 mb-3 flex items-center gap-1.5">
+                                        ${node.title}
+                                    </h3>
+                                ` : ''}
+
+                                <div class="space-y-2.5">
+                                    ${node.filteredDeliverables.map(item => `
+                                        <div class="p-2.5 rounded-xl ${node.isCritical ? 'bg-slate-800/80 border border-slate-700/60' : 'bg-slate-50 border border-slate-100'} flex items-start gap-2.5">
+                                            <div class="pt-0.5">${getOwnerBadge(item.owner)}</div>
+                                            <p class="text-xs font-medium ${node.isCritical ? 'text-slate-200' : 'text-slate-700'} leading-relaxed flex-1">
+                                                ${item.action}
+                                            </p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function setOwner(owner) {
+            activeOwner = owner;
+            renderOwnerFilters();
             renderTimeline();
         }
 
-        // Initialize on load
-        window.onload = function() {
+        function setTimeframe(tf) {
+            activeTimeframe = tf;
+            document.querySelectorAll('.tf-btn').forEach(btn => {
+                btn.className = 'tf-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition-all';
+            });
+            const activeBtn = document.getElementById(`tf-${tf}`);
+            if (activeBtn) {
+                activeBtn.className = 'tf-btn px-3 py-1 rounded-lg font-bold text-slate-900 bg-white shadow-xs transition-all';
+            }
             renderTimeline();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value;
+            renderTimeline();
+        }
+
+        function resetAllFilters() {
+            activeOwner = 'All';
+            activeTimeframe = 'All';
+            searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            renderOwnerFilters();
+            setTimeframe('All');
+        }
+
+        window.onload = function() {
+            renderOwnerFilters();
+            renderTimeline();
+            lucide.createIcons();
         };
     </script>
 </body>
 </html>
+
+```
